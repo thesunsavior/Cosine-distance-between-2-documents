@@ -13,4 +13,4 @@ Complexity: O(N)  with N is the max length between two documents
 Thus total complexity is O(N) (though we could use O(N*s.length) I suppose that s.length is likely to be small and thus can be eliminated)
 
 # Suggestion for a better formula
-Another approach would be using the Euclidean distance. That is we see the two documents as two point with N dimension (each feature is independent of others) and we show their differences by measuring their Eulidean distance (L2 norm)
+Another common approach would be using the Euclidean distance. That is we see the two documents as two point with N dimension (each feature is independent of others) and we show their differences by measuring their Eulidean distance (L2 norm). However this is in general a quite bad approach. Imagine an article says a whole lot about pancake and a single sentence about pancake. Even though, the two document is quite similar, their euclidean might be large
