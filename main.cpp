@@ -74,8 +74,8 @@ int main()
     string first_doc_path = "input1.txt";
     string second_doc_path = "input2.txt";
 
-    // cin >> first_doc_path;
-    // cin >> second_doc_path;
+    cin >> first_doc_path;
+    cin >> second_doc_path;
 
     document doc1;
     document doc2;
