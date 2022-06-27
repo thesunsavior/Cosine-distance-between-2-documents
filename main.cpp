@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <map>
+#include <unordered_map>
 #include <tgmath.h>
 #define PI 3.141592653589793238463
 
@@ -8,7 +8,7 @@ using namespace std;
 
 class document
 {
-    map<string, int> bag_of_words;
+    unordered_map<string, int> bag_of_words;
 
 public:
     bool contains(string word)
