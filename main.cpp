@@ -30,7 +30,7 @@ public:
     void insert(string word)
     {
         if (contains(word))
-            bag_of_words[word] = bag_of_words[word] + 1;
+            bag_of_words[word]++;
         else
             bag_of_words[word] = 1;
     }
@@ -39,10 +39,7 @@ public:
     {
         int sum = 0;
         for (auto iter = cbegin(bag_of_words); iter != cend(bag_of_words); ++iter)
-        {
-            string key = iter->first;
-            sum += get_value(key) * doc2.get_value(key);
-        }
+            sum += get_value(iter->first) * doc2.get_value(iter->first);
 
         return sum;
     }
@@ -52,11 +49,7 @@ public:
     {
         double sum = 0.0;
         for (auto iter = cbegin(bag_of_words); iter != cend(bag_of_words); ++iter)
-        {
-            int value = iter->second;
-            sum += value * value;
-            // cout << iter->first << " " << sum << endl;
-        }
+            sum += iter->second * iter->second;
 
         return sum;
     }
@@ -64,7 +57,7 @@ public:
     // cosine distance of the currently consider doc with doc2
     double cos_similarity(document doc2)
     {
-        // sqrt here so to get small marginal error
+        // sqrt here to get small marginal error
         return dot_product(doc2) / sqrt(sq_euclid_length() * doc2.sq_euclid_length());
     }
 };
@@ -74,8 +67,8 @@ int main()
     string first_doc_path = "input1.txt";
     string second_doc_path = "input2.txt";
 
-    cin >> first_doc_path;
-    cin >> second_doc_path;
+    // cin >> first_doc_path;
+    // cin >> second_doc_path;
 
     document doc1;
     document doc2;
@@ -89,13 +82,13 @@ int main()
         cout << "Unable to open file";
         exit(1); // terminate with error
     }
-    string word;
-    inFile >> word;
-    doc1.insert(word);
 
+    string word;
     while (inFile >> word)
     {
         doc1.insert(word);
+
+        // added this to avoid last line repeat error
         if (inFile.eof())
             break;
     }
@@ -111,13 +104,10 @@ int main()
         exit(1); // terminate with error
     }
 
-    inFile >> word;
-    doc2.insert(word);
-
     while (inFile >> word)
     {
-        // cout << word << endl;
         doc2.insert(word);
+        // added this to avoid last line repeat error
         if (inFile.eof())
             break;
     }
