@@ -35,7 +35,7 @@ public:
             bag_of_words[word] = 1;
     }
 
-    int dot_product(document doc2)
+    int dot_product(document &doc2)
     {
         int sum = 0;
         for (auto iter = cbegin(bag_of_words); iter != cend(bag_of_words); ++iter)
@@ -55,7 +55,7 @@ public:
     }
 
     // cosine distance of the currently consider doc with doc2
-    double cos_similarity(document doc2)
+    double cos_similarity(document &doc2)
     {
         // sqrt here to get small marginal error
         return dot_product(doc2) / sqrt(sq_euclid_length() * doc2.sq_euclid_length());
@@ -67,8 +67,8 @@ int main()
     string first_doc_path = "input1.txt";
     string second_doc_path = "input2.txt";
 
-    cin >> first_doc_path;
-    cin >> second_doc_path;
+    // cin >> first_doc_path;
+    // cin >> second_doc_path;
 
     document doc1;
     document doc2;
