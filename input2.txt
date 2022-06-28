@@ -1,1 +1,1 @@
-This will work whether the last line of the file ends with 
+This will work whether the last line of the file ends with
